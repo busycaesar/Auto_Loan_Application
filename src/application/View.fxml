@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane prefHeight="58.0" prefWidth="823.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="WHITE" layoutX="352.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AutoLoan">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <Pane prefHeight="361.0" prefWidth="823.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="52.0" layoutY="35.0" text="Vehicle Type">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="136.0" text="Vehicle Age">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="294.0" layoutY="35.0" text="Vehicle Price">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="294.0" layoutY="136.0" text="Vehicle Downpayment">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="575.0" layoutY="35.0" text="Load Interest Rate">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="575.0" layoutY="136.0" text="Load Payment Frequency">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField layoutX="294.0" layoutY="66.0" />
+            <TextField layoutX="294.0" layoutY="163.0" />
+            <TextField layoutX="575.0" layoutY="63.0" prefHeight="31.0" prefWidth="52.0" />
+            <ChoiceBox layoutX="635.0" layoutY="169.0" prefHeight="28.0" prefWidth="136.0" />
+            <TextField layoutX="575.0" layoutY="165.0" prefHeight="31.0" prefWidth="52.0" />
+            <Button layoutX="629.0" layoutY="272.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Clear">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="698.0" layoutY="272.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Calculate">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Pane layoutX="1.0" layoutY="323.0" prefHeight="141.0" prefWidth="823.0" style="-fx-background-color: darkgray;" />
+            <ChoiceBox layoutX="52.0" layoutY="66.0" prefHeight="28.0" prefWidth="103.0" />
+            <RadioButton layoutX="52.0" layoutY="168.0" mnemonicParsing="false" text="Old">
+               <toggleGroup>
+                  <ToggleGroup fx:id="vehicleAge" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="124.0" layoutY="168.0" mnemonicParsing="false" text="New" toggleGroup="$vehicleAge" />
+         </children>
+      </Pane>
+   </left>
+</BorderPane>
