@@ -3,6 +3,7 @@ package application;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 public class VehicleLoanView {
 
@@ -10,6 +11,8 @@ public class VehicleLoanView {
 	private ChoiceBox<String> vehicleType, loanPaymentFrequency;
 	@FXML
 	private RadioButton newVehicleAge, oldVehicleAge;
+	@FXML
+	private TextField vehiclePrice, vehicleDownpayment, loanInterestRate;
 	
 	public void initialize() {
 		
@@ -25,11 +28,25 @@ public class VehicleLoanView {
 		
 	}
 	
+	// This function sets default value to all the form fields.
 	private void setDefaults() {
 		this.vehicleType.setValue("Car");
 		this.loanPaymentFrequency.setValue("Monthly");
 		this.newVehicleAge.setSelected(true);
 		this.oldVehicleAge.setSelected(false);
+		this.vehiclePrice.setText("");
+		this.vehicleDownpayment.setText("");
+		this.loanInterestRate.setText("");
+	}
+	
+	@FXML
+	public void clearForm() {
+		this.setDefaults();
+	}
+
+	@FXML
+	public void calculateLoan() {
+		
 	}
 	
 }
