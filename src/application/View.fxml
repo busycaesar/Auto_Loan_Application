@@ -23,7 +23,7 @@
          </children>
       </Pane>
    </top>
-   <left>
+   <center>
       <Pane prefHeight="361.0" prefWidth="823.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="52.0" layoutY="35.0" text="Vehicle Type">
@@ -81,5 +81,5 @@
             <RadioButton layoutX="124.0" layoutY="168.0" mnemonicParsing="false" text="New" toggleGroup="$vehicleAge" />
          </children>
       </Pane>
-   </left>
+   </center>
 </BorderPane>
