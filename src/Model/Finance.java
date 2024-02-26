@@ -5,7 +5,7 @@ public class Finance {
 	private Vehicle item; 		     // Item for the loan. In our case the item is Vehicle type.
 	private double  downPayment,
 				    interest,
-				    paymentAmount;
+				    paymentAmount;   // Amount to be paid by the customer at the stored interval(i.e. frequency)
 	private int		durationInYears;
 	private String  frequency;       // Frequency of the loan: Monthly, Weekly, Bi-weekly.
 	
