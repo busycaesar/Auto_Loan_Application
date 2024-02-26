@@ -3,15 +3,14 @@ package Controller;
 import Model.*;
 
 public class VehicleLoanController {
-
-	private Vehicle vehicle;
+	
 	private Finance finance;
 	
-	public VehicleLoanController(String _type, String _age, double _price, double _downPayment, double _interest, int _durationInMonths, String _frequency) {
+	public VehicleLoanController(String _type, String _age, double _price, double _downPayment, double _interestRate, int _durationInMonths, String _frequency) {
 
 		double _paymentAmount = this.calculatePaymentAmount();
-		this.vehicle = new Vehicle(_type, _age, _price);
-		this.finance = new Finance(this.vehicle, _price - _downPayment, _interest, _paymentAmount, _durationInMonths, _frequency);
+		Vehicle vehicle = new Vehicle(_type, _age, _price);
+		this.finance = new Finance(vehicle, _price - _downPayment, _interestRate, _paymentAmount, _durationInMonths, _frequency);
 		
 	}
 	
@@ -19,5 +18,15 @@ public class VehicleLoanController {
 		// Calculate the loan amount according to 
 		return 0.0;
 	}
+	
+	public double getLoanAmount() { return this.finance.getLoanAmount(); }
+	
+	public double getInterestRate() { return this.finance.getInterestRate(); }
+	
+	public int getLoanDuration() { return this.finance.getLoanDuration(); }
+	
+	public double getPaymentAmount() { return this.finance.getPaymentAmount(); }
+	
+	public String getLoanPaymentFrequency() { return this.finance.getLoanPaymentFrequency(); }
 	
 }

@@ -20,4 +20,14 @@ public class Finance {
 		
 	}
 	
+	public double getLoanAmount() { return this.loanAmount;	}
+	
+	public double getInterestRate() { return this.interestRate; }
+	
+	public int getLoanDuration() { return this.durationInMonths; }
+	
+	public double getPaymentAmount() { return this.paymentAmount; }
+	
+	public String getLoanPaymentFrequency() { return this.frequency; }
+	
 }
