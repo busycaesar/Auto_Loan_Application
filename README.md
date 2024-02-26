@@ -10,7 +10,7 @@ Java, JavaFX, SceneBuilder
 
 ## How it looks
 
-![image](https://github.com/busycaesar/Auto_Loan_Application/assets/97539345/874313cd-d827-4623-bbaf-1015aaa68a5c)
+![Application Interface](https://github.com/busycaesar/Auto_Loan_Application/assets/97539345/5b987c83-4b21-4b7c-a109-b6aa8733a4fa)
 
 ## Features
 
