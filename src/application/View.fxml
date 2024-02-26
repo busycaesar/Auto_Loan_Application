@@ -91,7 +91,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Slider layoutX="561.0" layoutY="164.0" majorTickUnit="12" max="96" min="12" minorTickCount="0" prefHeight="19.0" prefWidth="240.0" showTickLabels="true" showTickMarks="true" />
+            <Slider fx:id="loanDuration" layoutX="561.0" layoutY="164.0" majorTickUnit="12" max="96" min="12" minorTickCount="0" prefHeight="19.0" prefWidth="240.0" showTickLabels="true" showTickMarks="true" />
      
          </children>
       </Pane>
