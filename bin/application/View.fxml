@@ -79,12 +79,12 @@
             <ChoiceBox fx:id="loanPaymentFrequency" layoutX="282.0" layoutY="158.0" prefHeight="31.0" prefWidth="151.0" />
             
             <!-- Button for initiating the operations! -->
-            <Button fx:id="clearFormButton" layoutX="629.0" layoutY="272.0" mnemonicParsing="false" onAction="#clearForm" style="-fx-background-color: black;" text="Clear" textFill="WHITE">
+            <Button fx:id="clearFormButton" layoutX="629.0" layoutY="272.0" mnemonicParsing="false" onAction="#clearForm" style="-fx-background-color: black; -fx-cursor: hand;" text="Clear" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="calculateLoanButton" layoutX="698.0" layoutY="272.0" mnemonicParsing="false" onAction="#calculateLoan" style="-fx-background-color: black;" text="Calculate" textFill="WHITE">
+            <Button fx:id="calculateLoanButton" layoutX="698.0" layoutY="272.0" mnemonicParsing="false" onAction="#calculateLoan" style="-fx-background-color: black; -fx-cursor: hand;" text="Calculate" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -94,13 +94,24 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Slider layoutX="561.0" layoutY="164.0" prefHeight="19.0" prefWidth="240.0"  min="12" max="96" majorTickUnit="12" minorTickCount="0" showTickLabels="true" showTickMarks="true" />
+            <Slider layoutX="561.0" layoutY="164.0" majorTickUnit="12" max="96" min="12" minorTickCount="0" prefHeight="19.0" prefWidth="240.0" showTickLabels="true" showTickMarks="true" />
      
          </children>
       </Pane>
    </center>
       <bottom>
             <Pane layoutX="1.0" layoutY="323.0" prefHeight="141.0" prefWidth="823.0" style="-fx-background-color: darkgray;">
-   </Pane>
+         <children>
+            <Button fx:id="clearFormButton1" layoutX="705.0" layoutY="22.0" mnemonicParsing="false" onAction="#clearForm" style="-fx-background-color: black; -fx-cursor: hand;" text="Save Rate" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="clearFormButton11" layoutX="659.0" layoutY="71.0" mnemonicParsing="false" onAction="#clearForm" style="-fx-background-color: black; -fx-cursor: hand;" text="Show Saved Rate" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children></Pane>
    </bottom>
 </BorderPane>
