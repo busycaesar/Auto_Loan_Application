@@ -15,4 +15,6 @@ public class Vehicle {
 		
 	}
 	
+	public double getPrice() { return this.price; }
+	
 }
