@@ -3,21 +3,19 @@ package Model;
 public class Finance {
 
 	private Vehicle item; 		     // Item for the loan. In our case the item is Vehicle type.
-	private double  downPayment,
-					loanAmount,
+	private double  loanAmount,
 				    interestRate,
 				    paymentAmount;   // Amount to be paid by the customer at the stored interval(i.e. frequency)
-	private int		durationInYears;
+	private int		durationInMonths;
 	private String  frequency;       // Frequency of the loan: Monthly, Weekly, Bi-weekly.
 	
-	public Finance(Vehicle _item, double _downPayment, double _interestRate, double _paymentAmount, int _durationInYears, String _frequency) {
+	public Finance(Vehicle _item, double _loanAmount, double _interestRate, double _paymentAmount, int _durationInMonths, String _frequency) {
 		
 		this.item = _item;
-		this.downPayment = _downPayment;
-		this.loanAmount = this.item.getPrice() - this.downPayment;
+		this.loanAmount = _loanAmount;
 		this.interestRate = _interestRate;
 		this.paymentAmount = _paymentAmount; 
-		this.durationInYears =_durationInYears;
+		this.durationInMonths =_durationInMonths;
 		this.frequency =_frequency;
 		
 	}
