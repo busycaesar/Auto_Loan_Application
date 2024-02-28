@@ -4,10 +4,12 @@ import Model.*;
 
 public class VehicleLoanController {
 	
-	private Finance finance;
+	private Finance    finance;
+	private LinkedList storedFinanceList;
 	
 	public VehicleLoanController(String _type, String _age, double _price, double _downPayment, double _interestRate, int _durationInMonths, String _frequency) {
 
+		storedFinanceList = new LinkedList();
 		double _paymentAmount = this.calculatePaymentAmount();
 		Vehicle vehicle = new Vehicle(_type, _age, _price);
 		this.finance = new Finance(vehicle, _price - _downPayment, _interestRate, _paymentAmount, _durationInMonths, _frequency);
@@ -28,5 +30,11 @@ public class VehicleLoanController {
 	public double getPaymentAmount() { return this.finance.getPaymentAmount(); }
 	
 	public String getLoanPaymentFrequency() { return this.finance.getLoanPaymentFrequency(); }
+	
+	public void save() {
+		
+		
+		
+	}
 	
 }
