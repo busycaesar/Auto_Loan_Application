@@ -135,4 +135,9 @@ public class VehicleLoanView {
 		
 	}
 	
+	// This function stores the loan details in the list.
+	private void storeLoanDetails() {
+		this.vehicleLoanController.save();
+	}
+	
 }
