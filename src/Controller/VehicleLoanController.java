@@ -4,37 +4,63 @@ import Model.*;
 
 public class VehicleLoanController {
 	
-	private Finance    finance;
-	private LinkedList storedFinanceList;
+	// Finance object to store the data.
+	private 	   Finance    finance;
+	// Linked list to store the list of the loan details.
+	private static LinkedList storedFinanceList = new LinkedList();
 	
 	public VehicleLoanController(String _type, String _age, double _price, double _downPayment, double _interestRate, int _durationInMonths, String _frequency) {
 
-		storedFinanceList = new LinkedList();
-		double _paymentAmount = this.calculatePaymentAmount();
-		Vehicle vehicle = new Vehicle(_type, _age, _price);
-		this.finance = new Finance(vehicle, _price - _downPayment, _interestRate, _paymentAmount, _durationInMonths, _frequency);
+		// Calculating the loan amount using the price of the vehicle and the downpayment.
+		double  loanAmount     = _price - _downPayment,
+				// Calculating the repayment amount according to the required frequency and other parameters.
+			    _paymentAmount = this.calculatePaymentAmount(_interestRate, _frequency, _durationInMonths, loanAmount);
+		Vehicle vehicle  	   = new Vehicle(_type, _age, _price);
+		
+		// Storing the data into the finance object.
+		this.finance 		   = new Finance(vehicle, loanAmount, _interestRate, _paymentAmount, _durationInMonths, _frequency);
 		
 	}
 	
-	private double calculatePaymentAmount() {
-		// Calculate the loan amount according to 
-		return 0.0;
+	private double calculatePaymentAmount(double _interestRate, String _frequency, int _durationInMonths, double _loanAmount) {
+		
+		// Calculating the monthly interest rate
+		double monthlyInterestRate = _interestRate / 12 / 100;
+		int	   numberOfPayments	   = 0;
+		
+		switch(_frequency) {
+		case "Monthly":
+			numberOfPayments = _durationInMonths * 1;
+			break;
+		case "Bi-weekly":
+			numberOfPayments = _durationInMonths * 2;
+			break;
+		case "Weekly":
+			numberOfPayments = _durationInMonths * 4;
+			break;
+		default:
+			System.out.println("Invalid payment frequency");
+			break;
+		}
+		
+		// This is the actual logic of the application. This is the place where the loan repayment amount is being calculated.
+		return _loanAmount * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
 	}
 	
-	public double getLoanAmount() { return this.finance.getLoanAmount(); }
+	// Getter functions.
+	public double getLoanAmount()    		{ return this.finance.getLoanAmount(); }
 	
-	public double getInterestRate() { return this.finance.getInterestRate(); }
+	public double getInterestRate()  		{ return this.finance.getInterestRate(); }
 	
-	public int getLoanDuration() { return this.finance.getLoanDuration(); }
+	public int 	  getLoanDuration()  		{ return this.finance.getLoanDuration(); }
 	
-	public double getPaymentAmount() { return this.finance.getPaymentAmount(); }
+	public double getPaymentAmount()        { return this.finance.getPaymentAmount(); }
 	
 	public String getLoanPaymentFrequency() { return this.finance.getLoanPaymentFrequency(); }
 	
-	public void save() {
-		
-		
-		
-	}
+	public int    totalStoredFinances() 	{ return VehicleLoanController.storedFinanceList.count(); }
+
+	// Storing the current finance object into the linked list.
+	public void   save() 					{ VehicleLoanController.storedFinanceList.insert(finance); }
 	
 }

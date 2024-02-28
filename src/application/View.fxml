@@ -117,12 +117,12 @@
       <bottom>
             <Pane layoutX="1.0" layoutY="323.0" prefHeight="141.0" prefWidth="823.0" style="-fx-background-color: darkgray;">
          <children>
-            <Button fx:id="clearFormButton1" layoutX="705.0" layoutY="22.0" mnemonicParsing="false" onAction="#clearForm" style="-fx-background-color: black; -fx-cursor: hand;" text="Save Rate" textFill="WHITE">
+            <Button fx:id="storeLoanDetailsButton" layoutX="705.0" layoutY="22.0" mnemonicParsing="false" onAction="#storeLoanDetails" style="-fx-background-color: black; -fx-cursor: hand;" text="Save Rate" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="clearFormButton11" layoutX="659.0" layoutY="71.0" mnemonicParsing="false" onAction="#clearForm" style="-fx-background-color: black; -fx-cursor: hand;" text="Show Saved Rate" textFill="WHITE">
+            <Button fx:id="showLoanDetailListButton" layoutX="659.0" layoutY="71.0" mnemonicParsing="false" onAction="#showLoanDetailList" style="-fx-background-color: black; -fx-cursor: hand;" text="Show Saved Rate" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

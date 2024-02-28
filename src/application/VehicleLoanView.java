@@ -135,9 +135,18 @@ public class VehicleLoanView {
 		
 	}
 	
+	@FXML
 	// This function stores the loan details in the list.
-	private void storeLoanDetails() {
+	public void storeLoanDetails() { 
+		System.out.println("Storing Details");
 		this.vehicleLoanController.save();
+	}
+	
+	@FXML
+	// This function stores the loan details in the list.
+	public void showLoanDetailList() { 
+		System.out.println("Showing stored Details");
+		this.displayLoan.setText(Integer.toString(this.vehicleLoanController.totalStoredFinances()));
 	}
 	
 }
