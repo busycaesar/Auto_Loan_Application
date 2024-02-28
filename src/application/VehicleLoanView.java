@@ -30,7 +30,8 @@ public class VehicleLoanView {
 		this.setDefaults();
 		
 	}
-	
+
+	// Fill all the choices into the choice box.
 	private void fillChoiceBoxes() {
 		
 		this.vehicleType.getItems().addAll("Car", "Truct", "Family Van");
@@ -41,7 +42,7 @@ public class VehicleLoanView {
 		
 	}
 	
-	// This function sets default value to all the form fields.
+	//Set all the default values of the form.
 	private void setDefaults() {
 		this.vehicleType.setValue("Car");
 		this.loanPaymentFrequency.setValue("Monthly");
@@ -55,14 +56,13 @@ public class VehicleLoanView {
 		this.displayWarning.setText("");
 	}
 	
-	// This function call the function to set all the form fields to default value.
 	@FXML
 	public void clearForm() {
 		this.setDefaults();
 	}
 
 	@FXML
-	// This function fetches the data from the form, creates the controller object and calls the function to display the results.
+	// Fetch all the data filled by the user and display the loan details.
 	public void calculateLoan() {
 		
 		if(!this.checkFormFields()) {
@@ -70,8 +70,8 @@ public class VehicleLoanView {
 			return;
 		}
 		
-		String _vehicleType  		= this.vehicleType.getValue(),
-			   _vehicleAge   		= ((RadioButton)this.vehicleAge.getSelectedToggle()).getText(),
+		String _vehicleType  		 = this.vehicleType.getValue(),
+			   _vehicleAge   		 = ((RadioButton)this.vehicleAge.getSelectedToggle()).getText(),
 			   _loanPaymentFrequency = this.loanPaymentFrequency.getValue();
 		
 		try {
@@ -100,15 +100,17 @@ public class VehicleLoanView {
 		
 	}
 	
-	// This function makes sure that all the required fields are filled by the user.
+	// Make sure the user filled all the required fields before submitting the form.
 	private boolean checkFormFields() {
 		return !this.vehiclePrice.getText().isEmpty()
 			&& !this.vehicleDownpayment.getText().isEmpty()
 			&& !this.loanInterestRate.getText().isEmpty();
 	}
 	
+	// Convert the amount(double) into the currency format(string).
 	private String currenyFormat(double _amount) { return String.format("%.2f", _amount); }
 	
+	// Display all the loan details as required by the user.
 	private void displayLoanDetails() {
 		
 		String _loanAmount       = this.currenyFormat(this.vehicleLoanController.getLoanAmount()),
@@ -123,10 +125,10 @@ public class VehicleLoanView {
 		&& _paymentAmount 	 != ""
 		&& _frequency 		 != "") {
 			
-			String _message = "You can borrow " + _loanAmount +
-							  " at " + _interestRate + "% interest rate for " +
-							  _durationInMonths + " months.\nYou will pay $" +
-							  _paymentAmount + " " + _frequency + ".";
+			String _message = "You can borrow $" + _loanAmount + " at " + _interestRate
+							  + "% interest rate for " + _durationInMonths
+							  + " months.\nYou will pay $" + _paymentAmount + " "
+							  + _frequency + ".";
 			
 			this.displayLoan.setText(_message);
 			
@@ -136,17 +138,21 @@ public class VehicleLoanView {
 	}
 	
 	@FXML
-	// This function stores the loan details in the list.
+	// Store the displayed loan details into a list.
 	public void storeLoanDetails() { 
+		
 		System.out.println("Storing Details");
 		this.vehicleLoanController.save();
+	
 	}
 	
 	@FXML
-	// This function stores the loan details in the list.
+	// Display the loan details stored into the list.
 	public void showLoanDetailList() { 
+		
 		System.out.println("Showing stored Details");
 		this.displayLoan.setText(Integer.toString(this.vehicleLoanController.totalStoredFinances()));
+	
 	}
 	
 }

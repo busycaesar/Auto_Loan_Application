@@ -59,6 +59,10 @@ public class VehicleLoanController {
 	public String getLoanPaymentFrequency() { return this.finance.getLoanPaymentFrequency(); }
 	
 	public int    totalStoredFinances() 	{ return VehicleLoanController.storedFinanceList.count(); }
+	
+	public String getVehicleType()			{ return this.finance.getVehicleType(); }
+	
+	public String getVehicleAge() 			{ return this.finance.getVehicleAge(); }
 
 	// Storing the current finance object into the linked list.
 	public void   save() 					{ VehicleLoanController.storedFinanceList.insert(finance); }

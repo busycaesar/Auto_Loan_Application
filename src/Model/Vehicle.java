@@ -17,4 +17,8 @@ public class Vehicle {
 	
 	public double getPrice() { return this.price; }
 	
+	public String getAge()	 { return this.age; }
+	
+	public String getType()  { return this.type; }
+	
 }
