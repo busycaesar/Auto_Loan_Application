@@ -88,9 +88,9 @@ public class VehicleLoanView {
 			
 			this.vehicleLoanController = new VehicleLoanController(_vehicleType, _vehicleAge, _vehiclePrice, _vehicleDownPayment, _interestRate, _loanDuration, _loanPaymentFrequency);
 			
-			this.displayLoanDetails();
-			
 			this.setDefaults();
+			
+			this.displayLoanDetails();
 			
 		}
 		catch (NumberFormatException e){ 
