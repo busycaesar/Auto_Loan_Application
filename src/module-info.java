@@ -1,4 +1,4 @@
-module Workshop_3 {
+module work3 {
 	requires javafx.controls;
 	requires javafx.fxml;
 	

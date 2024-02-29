@@ -12,7 +12,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			// Create a BorderPane and load the fxml file.
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("View.fxml"));
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("AutoLoan.fxml"));
 			
 			// Create a scene, load the BorderPane, and set the application dimensions.
 			Scene scene = new Scene(root,815,515);
