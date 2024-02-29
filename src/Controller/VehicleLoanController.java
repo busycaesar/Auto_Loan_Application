@@ -99,5 +99,5 @@ public class VehicleLoanController {
 
 	// Storing the current finance object into the linked list.
 	public void   save() 								 { VehicleLoanController.storedFinanceList.insert(finance); }
-	
+
 }

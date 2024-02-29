@@ -46,5 +46,4 @@ public class LinkedList {
 		}
 		return totalNodes;
 	}
-
 }

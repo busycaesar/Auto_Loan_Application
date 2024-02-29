@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="ASCII"?>
 <anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
   <deploy>
@@ -6,3 +7,13 @@
   </deploy>
   <signjar/>
 </anttasks:AntTask>
+=======
+<?xml version="1.0" encoding="ASCII"?>
+<anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://org.eclipse.fx.ide.jdt/1.0" buildDirectory="${project}/build">
+  <deploy>
+    <application name="work3"/>
+    <info/>
+  </deploy>
+  <signjar/>
+</anttasks:AntTask>
+>>>>>>> 61a84c70b713c996f6efca4a1f0af1ed754da04b
