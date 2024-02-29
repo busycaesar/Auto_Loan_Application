@@ -30,6 +30,8 @@ public class VehicleLoanView {
 				    			  calculateLoanButton,
 				    			  saveRateButton,
 				    			  showSavedRatesButton;
+	@FXML
+	private Label				  loanDurationLabel;
 	
 	// Controller
 	private VehicleLoanController vehicleLoanController;
@@ -74,6 +76,7 @@ public class VehicleLoanView {
 		this.loanDuration.setValue(12);
 		this.displayLoan.setText("");
 		this.displayWarning.setText("");
+		this.loanDurationFormFieldVisibility(false);
 	}
 	
 	// Event handlers for buttons.
@@ -96,6 +99,11 @@ public class VehicleLoanView {
 		@Override
 		public void handle(ActionEvent event) { showSavedRates(); }
 	};
+	
+	private void loanDurationFormFieldVisibility(boolean visibility) {
+		this.loanDurationLabel.setVisible(visibility);
+		this.loanDuration.setVisible(visibility);
+	}
 	
 	// Fetch all the data filled by the user and display the loan details.
 	private void calculateLoan() {
@@ -125,6 +133,8 @@ public class VehicleLoanView {
 			this.setDefaults();
 			
 			this.displayLoanDetails();
+			
+			this.loanDurationFormFieldVisibility(true);
 			
 		}
 		catch (NumberFormatException e){ 
