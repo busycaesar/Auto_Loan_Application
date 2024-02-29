@@ -8,7 +8,7 @@ import javafx.beans.value.*;
 import java.util.Random;
 import Controller.VehicleLoanController;
 
-public class VehicleLoanView {
+public class AutoLoanController {
 
 	@FXML
 	private ChoiceBox<String> 	  vehicleType,
