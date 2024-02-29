@@ -3,31 +3,53 @@ package application;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.*;
+import javafx.event.*;
 
 import Controller.VehicleLoanController;
 
 public class VehicleLoanView {
 
 	@FXML
-	private ChoiceBox<String> vehicleType, loanPaymentFrequency;
+	private ChoiceBox<String> 	  vehicleType,
+							  	  loanPaymentFrequency;
 	@FXML
-	private RadioButton newVehicleAge, oldVehicleAge;
+	private RadioButton 		  newVehicleAge,
+								  oldVehicleAge;
 	@FXML
-	private ToggleGroup vehicleAge;
+	private ToggleGroup 		  vehicleAge;
 	@FXML
-	private TextField vehiclePrice, vehicleDownpayment, loanInterestRate;
+	private TextField 			  vehiclePrice,
+					  			  vehicleDownpayment,
+					  			  loanInterestRate;
 	@FXML
-	private Slider loanDuration;
+	private Slider 				  loanDuration;
 	@FXML
-	private Text displayLoan, displayWarning;
+	private Text 				  displayLoan,
+				 				  displayWarning;
+	@FXML
+	private Button 				  clearFormButton,
+				    			  calculateLoanButton,
+				    			  saveRateButton,
+				    			  showSavedRatesButton;
 	
 	// Controller
 	private VehicleLoanController vehicleLoanController;
 	
 	public void initialize() {
 		
+		this.setEventHandlers();
 		this.fillChoiceBoxes();
 		this.setDefaults();
+		
+	}
+	
+	// Set event handlers for all the buttons
+	private void setEventHandlers() {
+		
+		this.clearFormButton.setOnAction(clearButtonClickHandler);	
+		this.calculateLoanButton.setOnAction(calculateButtonClickHandler);
+		this.saveRateButton.setOnAction(saveRateButtonClickHandler);
+		this.showSavedRatesButton.setOnAction(showSavedRatesButtonClickHandler);
 		
 	}
 
@@ -42,7 +64,7 @@ public class VehicleLoanView {
 		
 	}
 	
-	//Set all the default values of the form.
+	// Set all the default values of the form.
 	private void setDefaults() {
 		this.vehicleType.setValue("Car");
 		this.loanPaymentFrequency.setValue("Monthly");
@@ -56,14 +78,29 @@ public class VehicleLoanView {
 		this.displayWarning.setText("");
 	}
 	
-	@FXML
-	public void clearForm() {
-		this.setDefaults();
-	}
-
-	@FXML
+	// Event handlers for buttons.
+	private EventHandler<ActionEvent> clearButtonClickHandler = new EventHandler<ActionEvent>() {
+		@Override
+		public void handle(ActionEvent event) { setDefaults(); }
+	};
+	
+	private EventHandler<ActionEvent> calculateButtonClickHandler = new EventHandler<ActionEvent>() {
+		@Override
+		public void handle(ActionEvent event) { calculateLoan(); }
+	};
+	
+	private EventHandler<ActionEvent> saveRateButtonClickHandler = new EventHandler<ActionEvent>() {
+		@Override
+		public void handle(ActionEvent event) { storeRate(); }
+	};
+	
+	private EventHandler<ActionEvent> showSavedRatesButtonClickHandler = new EventHandler<ActionEvent>() {
+		@Override
+		public void handle(ActionEvent event) { showSavedRates(); }
+	};
+	
 	// Fetch all the data filled by the user and display the loan details.
-	public void calculateLoan() {
+	private void calculateLoan() {
 		
 		if(!this.checkFormFields()) {
 			this.displayWarning.setText("Fields marked with * are required!");
@@ -113,7 +150,9 @@ public class VehicleLoanView {
 	// Display all the loan details as required by the user.
 	private void displayLoanDetails() {
 		
-		String _loanAmount       = this.currenyFormat(this.vehicleLoanController.getLoanAmount()),
+		String _vehicleType		 = this.vehicleLoanController.getVehicleType(),
+			   _vehicleAge		 = this.vehicleLoanController.getVehicleAge(),
+			   _loanAmount       = this.currenyFormat(this.vehicleLoanController.getLoanAmount()),
 			   _interestRate     = this.currenyFormat(this.vehicleLoanController.getInterestRate()),
 			   _durationInMonths = Integer.toString(this.vehicleLoanController.getLoanDuration()),
 			   _paymentAmount 	 = this.currenyFormat(this.vehicleLoanController.getPaymentAmount()),
@@ -125,10 +164,9 @@ public class VehicleLoanView {
 		&& _paymentAmount 	 != ""
 		&& _frequency 		 != "") {
 			
-			String _message = "You can borrow $" + _loanAmount + " at " + _interestRate
-							  + "% interest rate for " + _durationInMonths
-							  + " months.\nYou will pay $" + _paymentAmount + " "
-							  + _frequency + ".";
+			String _message = "For your " + _vehicleAge.toLowerCase() + " " + _vehicleType.toLowerCase() + ", you can borrow $" + _loanAmount + " at " + _interestRate
+							  + "% rate of interest.\nYou will pay $" + _paymentAmount + " "
+							  + _frequency.toLowerCase() + " for next " + _durationInMonths + " months.";
 			
 			this.displayLoan.setText(_message);
 			
@@ -139,16 +177,17 @@ public class VehicleLoanView {
 	
 	@FXML
 	// Store the displayed loan details into a list.
-	public void storeLoanDetails() { 
+	public void storeRate() { 
 		
 		System.out.println("Storing Details");
 		this.vehicleLoanController.save();
+		this.displayLoan.setText("Rates stored successfully!");
 	
 	}
 	
 	@FXML
 	// Display the loan details stored into the list.
-	public void showLoanDetailList() { 
+	public void showSavedRates() { 
 		
 		System.out.println("Showing stored Details");
 		this.displayLoan.setText(Integer.toString(this.vehicleLoanController.totalStoredFinances()));
