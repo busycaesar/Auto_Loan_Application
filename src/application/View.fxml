@@ -60,13 +60,6 @@
             </Label>
             <TextField fx:id="vehicleDownpayment" layoutX="297.0" layoutY="62.0" prefHeight="31.0" prefWidth="139.0" />
             
-            <Label layoutX="561.0" layoutY="34.0" text="Load Interest Rate*">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="loanInterestRate" layoutX="561.0" layoutY="62.0" prefHeight="31.0" prefWidth="86.0" />
-            
             <Label layoutX="282.0" layoutY="124.0" text="Load Payment Frequency">
                <font>
                   <Font size="16.0" />
@@ -95,11 +88,6 @@
                <font>
                   <Font size="16.0" />
                </font></Text>
-            <Text layoutX="654.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
             <Text layoutX="282.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
                <font>
                   <Font size="18.0" />

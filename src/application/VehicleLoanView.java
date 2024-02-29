@@ -19,8 +19,7 @@ public class VehicleLoanView {
 	private ToggleGroup 		  vehicleAge;
 	@FXML
 	private TextField 			  vehiclePrice,
-					  			  vehicleDownpayment,
-					  			  loanInterestRate;
+					  			  vehicleDownpayment;
 	@FXML
 	private Slider 				  loanDuration;
 	@FXML
@@ -72,7 +71,6 @@ public class VehicleLoanView {
 		this.oldVehicleAge.setSelected(false);
 		this.vehiclePrice.setText("");
 		this.vehicleDownpayment.setText("");
-		this.loanInterestRate.setText("");
 		this.loanDuration.setValue(12);
 		this.displayLoan.setText("");
 		this.displayWarning.setText("");
@@ -114,8 +112,7 @@ public class VehicleLoanView {
 		try {
 			
 			double _vehiclePrice 	   = Double.parseDouble(this.vehiclePrice.getText()),
-				   _vehicleDownPayment = Double.parseDouble(this.vehicleDownpayment.getText()),
-				   _interestRate	   = Double.parseDouble(this.loanInterestRate.getText());
+				   _vehicleDownPayment = Double.parseDouble(this.vehicleDownpayment.getText());
 			int    _loanDuration	   = (int)this.loanDuration.getValue();
 			
 			if(_vehiclePrice <= _vehicleDownPayment) {
@@ -123,7 +120,7 @@ public class VehicleLoanView {
 				return;
 			}
 			
-			this.vehicleLoanController = new VehicleLoanController(_vehicleType, _vehicleAge, _vehiclePrice, _vehicleDownPayment, _interestRate, _loanDuration, _loanPaymentFrequency);
+			this.vehicleLoanController = new VehicleLoanController(_vehicleType, _vehicleAge, _vehiclePrice, _vehicleDownPayment, _loanDuration, _loanPaymentFrequency);
 			
 			this.setDefaults();
 			
@@ -140,8 +137,7 @@ public class VehicleLoanView {
 	// Make sure the user filled all the required fields before submitting the form.
 	private boolean checkFormFields() {
 		return !this.vehiclePrice.getText().isEmpty()
-			&& !this.vehicleDownpayment.getText().isEmpty()
-			&& !this.loanInterestRate.getText().isEmpty();
+			&& !this.vehicleDownpayment.getText().isEmpty();
 	}
 	
 	// Convert the amount(double) into the currency format(string).
@@ -164,7 +160,9 @@ public class VehicleLoanView {
 		&& _paymentAmount 	 != ""
 		&& _frequency 		 != "") {
 			
-			String _message = "For your " + _vehicleAge.toLowerCase() + " " + _vehicleType.toLowerCase() + ", you can borrow $" + _loanAmount + " at " + _interestRate
+			String _message = "For your " + _vehicleAge.toLowerCase() + " "
+							  + _vehicleType.toLowerCase() + ", you can borrow $"
+							  + _loanAmount + " at " + _interestRate
 							  + "% rate of interest.\nYou will pay $" + _paymentAmount + " "
 							  + _frequency.toLowerCase() + " for next " + _durationInMonths + " months.";
 			

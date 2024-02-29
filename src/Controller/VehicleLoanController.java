@@ -9,17 +9,22 @@ public class VehicleLoanController {
 	// Linked list to store the list of the loan details.
 	private static LinkedList storedFinanceList = new LinkedList();
 	
-	public VehicleLoanController(String _type, String _age, double _price, double _downPayment, double _interestRate, int _durationInMonths, String _frequency) {
+	public VehicleLoanController(String _type, String _age, double _price, double _downPayment, int _durationInMonths, String _frequency) {
 
 		// Calculating the loan amount using the price of the vehicle and the downpayment.
-		double  loanAmount     = _price - _downPayment,
+		double  _loanAmount    = _price - _downPayment,
+				_interestRate  = this.calculateLoanInterest(),
 				// Calculating the repayment amount according to the required frequency and other parameters.
-			    _paymentAmount = this.calculatePaymentAmount(_interestRate, _frequency, _durationInMonths, loanAmount);
-		Vehicle vehicle  	   = new Vehicle(_type, _age, _price);
+			    _paymentAmount = this.calculatePaymentAmount(_interestRate, _frequency, _durationInMonths, _loanAmount);
+		Vehicle _vehicle  	   = new Vehicle(_type, _age, _price);
 		
 		// Storing the data into the finance object.
-		this.finance 		   = new Finance(vehicle, loanAmount, _interestRate, _paymentAmount, _durationInMonths, _frequency);
+		this.finance 		   = new Finance(_vehicle, _loanAmount, _interestRate, _paymentAmount, _durationInMonths, _frequency);
 		
+	}
+	
+	private double calculateLoanInterest() {
+		return 0.0;
 	}
 	
 	private double calculatePaymentAmount(double _interestRate, String _frequency, int _durationInMonths, double _loanAmount) {
