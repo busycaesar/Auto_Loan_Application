@@ -13,7 +13,7 @@ public class VehicleLoanController {
 
 		// Calculating the loan amount using the price of the vehicle and the downpayment.
 		double  _loanAmount    = _price - _downPayment,
-				_interestRate  = this.calculateLoanInterest(),
+				_interestRate  = this.calculateLoanInterest(_type, _age, _durationInMonths),
 				// Calculating the repayment amount according to the required frequency and other parameters.
 			    _paymentAmount = this.calculatePaymentAmount(_interestRate, _frequency, _durationInMonths, _loanAmount);
 		Vehicle _vehicle  	   = new Vehicle(_type, _age, _price);
@@ -23,8 +23,21 @@ public class VehicleLoanController {
 		
 	}
 	
-	private double calculateLoanInterest() {
-		return 0.0;
+	private double calculateLoanInterest(String _type, String _age, int _durationInMonths) {
+		// Base rate of interest.
+		double roi = 1.5;
+		
+		// Updating ROI as per the vehicle parameters.
+		// Vehicle Type
+		if(_type == "Truck") { roi += 2; }
+		else if(_type == "Family Van"){ roi += 1; }
+		// Vehicle Age
+		if(_age == "Old") { roi += 1; }
+		// Frequency
+		if(_durationInMonths < 30) { roi += 0.5; }
+		else if(_durationInMonths < 45) { roi += 1; }
+		
+		return roi;
 	}
 	
 	private double calculatePaymentAmount(double _interestRate, String _frequency, int _durationInMonths, double _loanAmount) {

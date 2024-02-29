@@ -55,7 +55,7 @@ public class VehicleLoanView {
 	// Fill all the choices into the choice box.
 	private void fillChoiceBoxes() {
 		
-		this.vehicleType.getItems().addAll("Car", "Truct", "Family Van");
+		this.vehicleType.getItems().addAll("Car", "Truck", "Family Van");
 		this.loanPaymentFrequency.getItems().addAll("Monthly", "Bi-weekly", "Weekly");
 		this.vehicleAge = new ToggleGroup();
 		this.newVehicleAge.setToggleGroup(this.vehicleAge);
