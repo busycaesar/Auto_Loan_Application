@@ -20,18 +20,24 @@ public class Finance {
 		
 	}
 	
-	public double getLoanAmount() 			{ return this.loanAmount;	}
+	public double getLoanAmount() 						  { return this.loanAmount;	}
 	
-	public double getInterestRate() 		{ return this.interestRate; }
+	public double getInterestRate() 					  { return this.interestRate; }
 	
-	public int 	  getLoanDuration() 		{ return this.durationInMonths; }
+	public void   setInterestRate(double _roi)			  { this.interestRate = _roi; }
 	
-	public double getPaymentAmount() 		{ return this.paymentAmount; }
+	public int 	  getLoanDuration() 					  { return this.durationInMonths; }
 	
-	public String getLoanPaymentFrequency() { return this.frequency; }
+	public void	  setLoanDuration(int _durationInMonths)  { this.durationInMonths = _durationInMonths; }
 	
-	public String getVehicleAge() 			{ return this.item.getAge(); }
+	public double getPaymentAmount() 					  { return this.paymentAmount; }
 	
-	public String getVehicleType() 			{ return this.item.getType(); }
+	public void   setPaymentAmount(double _paymentAmount) { this.paymentAmount = _paymentAmount; }
+	
+	public String getLoanPaymentFrequency() 		 	  { return this.frequency; }
+	
+	public String getVehicleAge() 						  { return this.item.getAge(); }
+	
+	public String getVehicleType() 					  	  { return this.item.getType(); }
 	
 }

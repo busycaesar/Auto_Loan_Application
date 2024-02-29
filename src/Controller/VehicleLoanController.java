@@ -12,18 +12,16 @@ public class VehicleLoanController {
 	public VehicleLoanController(String _type, String _age, double _price, double _downPayment, int _durationInMonths, String _frequency) {
 
 		// Calculating the loan amount using the price of the vehicle and the downpayment.
-		double  _loanAmount    = _price - _downPayment,
-				_interestRate  = this.calculateLoanInterest(_type, _age, _durationInMonths),
-				// Calculating the repayment amount according to the required frequency and other parameters.
-			    _paymentAmount = this.calculatePaymentAmount(_interestRate, _frequency, _durationInMonths, _loanAmount);
+		double  _loanAmount    = _price - _downPayment;
 		Vehicle _vehicle  	   = new Vehicle(_type, _age, _price);
 		
 		// Storing the data into the finance object.
-		this.finance 		   = new Finance(_vehicle, _loanAmount, _interestRate, _paymentAmount, _durationInMonths, _frequency);
+		this.finance 		   = new Finance(_vehicle, _loanAmount, 0, 0, _durationInMonths, _frequency);
+		this.updateROIAndPaymentAmount();
 		
 	}
 	
-	private double calculateLoanInterest(String _type, String _age, int _durationInMonths) {
+	private double calculateROI(String _type, String _age, int _durationInMonths) {
 		// Base rate of interest.
 		double roi = 1.5;
 		
@@ -65,24 +63,41 @@ public class VehicleLoanController {
 		return _loanAmount * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
 	}
 	
-	// Getter functions.
-	public double getLoanAmount()    		{ return this.finance.getLoanAmount(); }
+	// Getters and setters.
+	public double getLoanAmount()    					 { return this.finance.getLoanAmount(); }
 	
-	public double getInterestRate()  		{ return this.finance.getInterestRate(); }
+	public double getInterestRate()  					 { return this.finance.getInterestRate(); }
 	
-	public int 	  getLoanDuration()  		{ return this.finance.getLoanDuration(); }
+	public int 	  getLoanDuration()  					 { return this.finance.getLoanDuration(); }
 	
-	public double getPaymentAmount()        { return this.finance.getPaymentAmount(); }
+	public void   setLoanDuration(int _durationInMonths){
 	
-	public String getLoanPaymentFrequency() { return this.finance.getLoanPaymentFrequency(); }
+		this.finance.setLoanDuration(_durationInMonths);
+		this.updateROIAndPaymentAmount();
+		
+	}
 	
-	public int    totalStoredFinances() 	{ return VehicleLoanController.storedFinanceList.count(); }
+	private void updateROIAndPaymentAmount() {
+
+		double newROI			= this.calculateROI(this.finance.getVehicleType(), this.finance.getVehicleAge(), this.finance.getLoanDuration()),
+			   newPaymentAmount = this.calculatePaymentAmount(newROI, this.finance.getLoanPaymentFrequency(), this.finance.getLoanDuration(), this.finance.getLoanAmount());
+		
+		this.finance.setInterestRate(newROI);
+		this.finance.setPaymentAmount(newPaymentAmount);
+		
+	}
 	
-	public String getVehicleType()			{ return this.finance.getVehicleType(); }
+	public double getPaymentAmount()        			 { return this.finance.getPaymentAmount(); }
 	
-	public String getVehicleAge() 			{ return this.finance.getVehicleAge(); }
+	public String getLoanPaymentFrequency() 			 { return this.finance.getLoanPaymentFrequency(); }
+	
+	public int    totalStoredFinances() 				 { return VehicleLoanController.storedFinanceList.count(); }
+	
+	public String getVehicleType()						 { return this.finance.getVehicleType(); }
+	
+	public String getVehicleAge() 						 { return this.finance.getVehicleAge(); }
 
 	// Storing the current finance object into the linked list.
-	public void   save() 					{ VehicleLoanController.storedFinanceList.insert(finance); }
+	public void   save() 								 { VehicleLoanController.storedFinanceList.insert(finance); }
 	
 }

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.text.*;
 import javafx.event.*;
+import javafx.beans.value.*;
 
 import Controller.VehicleLoanController;
 
@@ -51,6 +52,7 @@ public class VehicleLoanView {
 		this.calculateLoanButton.setOnAction(calculateButtonClickHandler);
 		this.saveRateButton.setOnAction(saveRateButtonClickHandler);
 		this.showSavedRatesButton.setOnAction(showSavedRatesButtonClickHandler);
+		this.loanDuration.valueProperty().addListener(loanDurationSliderListener);
 		
 	}
 
@@ -67,6 +69,7 @@ public class VehicleLoanView {
 	
 	// Set all the default values of the form.
 	private void setDefaults() {
+		
 		this.vehicleType.setValue("Car");
 		this.loanPaymentFrequency.setValue("Monthly");
 		this.newVehicleAge.setSelected(true);
@@ -77,6 +80,7 @@ public class VehicleLoanView {
 		this.displayLoan.setText("");
 		this.displayWarning.setText("");
 		this.loanDurationFormFieldVisibility(false);
+		
 	}
 	
 	// Event handlers for buttons.
@@ -100,9 +104,18 @@ public class VehicleLoanView {
 		public void handle(ActionEvent event) { showSavedRates(); }
 	};
 	
-	private void loanDurationFormFieldVisibility(boolean visibility) {
-		this.loanDurationLabel.setVisible(visibility);
-		this.loanDuration.setVisible(visibility);
+	private ChangeListener<Number> loanDurationSliderListener = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+        	vehicleLoanController.setLoanDuration(newValue.intValue());
+        	displayLoanDetails();
+        }
+	};
+	
+	// Maintain the visibility of loan duration form field.
+	private void loanDurationFormFieldVisibility(boolean _visibility) {
+		this.loanDurationLabel.setVisible(_visibility);
+		this.loanDuration.setVisible(_visibility);
 	}
 	
 	// Fetch all the data filled by the user and display the loan details.
@@ -163,7 +176,7 @@ public class VehicleLoanView {
 			   _durationInMonths = Integer.toString(this.vehicleLoanController.getLoanDuration()),
 			   _paymentAmount 	 = this.currenyFormat(this.vehicleLoanController.getPaymentAmount()),
 			   _frequency 		 = this.vehicleLoanController.getLoanPaymentFrequency();
-		
+
 		if(_loanAmount 		 != ""
 		&& _interestRate 	 != ""
 		&& _durationInMonths != ""
@@ -180,6 +193,11 @@ public class VehicleLoanView {
 			
 		}
 		else this.displayLoan.setText("Internal system error!");
+		
+	}
+	
+	@FXML
+	public void addSampleData() {
 		
 	}
 	
