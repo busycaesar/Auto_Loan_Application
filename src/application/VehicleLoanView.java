@@ -234,6 +234,7 @@ public class VehicleLoanView {
 		
 		System.out.println("Storing Details");
 		this.vehicleLoanController.save();
+		this.setDefaults();
 		this.displayLoan.setText("Rates stored successfully!");
 	
 	}
@@ -242,8 +243,7 @@ public class VehicleLoanView {
 	// Display the loan details stored into the list.
 	public void showSavedRates() { 
 		
-		System.out.println("Showing stored Details");
-		this.displayLoan.setText(Integer.toString(this.vehicleLoanController.totalStoredFinances()));
+		// Display the list of rates.
 	
 	}
 	
