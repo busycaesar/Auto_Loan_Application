@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.*;
 import javafx.event.*;
 import javafx.beans.value.*;
-
+import java.util.Random;
 import Controller.VehicleLoanController;
 
 public class VehicleLoanView {
@@ -196,9 +196,35 @@ public class VehicleLoanView {
 		
 	}
 	
+    private double randomNum(double min, double max) {
+        if (min >= max) {
+            throw new IllegalArgumentException("Max must be greater than min");
+        }
+
+        Random random = new Random();
+        return random.nextDouble(min, max);
+    }
+	
 	@FXML
 	public void addSampleData() {
 		
+		//1-3
+		double _vehicleDownPayment = this.randomNum(100, 5000),
+		_vehiclePrice = this.randomNum(_vehicleDownPayment + 500, 50000);
+
+		if (_vehicleDownPayment < 3000) {
+			this.vehicleType.setValue("Family Van");
+			this.loanPaymentFrequency.setValue("Bi-weekly");			
+		}
+		else { this.loanPaymentFrequency.setValue("Weekly"); }
+		
+		if (_vehiclePrice > 35000) {
+			this.newVehicleAge.setSelected(false);
+			this.oldVehicleAge.setSelected(true);			
+		}
+		
+		this.vehiclePrice.setText(this.currenyFormat(_vehiclePrice));
+		this.vehicleDownpayment.setText(this.currenyFormat(_vehiclePrice));
 	}
 	
 	@FXML
