@@ -137,6 +137,7 @@ public class VehicleLoanView {
 			int    _loanDuration	   = (int)this.loanDuration.getValue();
 			
 			if(_vehiclePrice <= _vehicleDownPayment) {
+				System.out.println("Print message");
 				this.displayWarning.setText("Vehicle's price cannot be less than or equal to the down payment!");
 				return;
 			}
@@ -224,7 +225,7 @@ public class VehicleLoanView {
 		}
 		
 		this.vehiclePrice.setText(this.currenyFormat(_vehiclePrice));
-		this.vehicleDownpayment.setText(this.currenyFormat(_vehiclePrice));
+		this.vehicleDownpayment.setText(this.currenyFormat(_vehicleDownPayment));
 	}
 	
 	@FXML
