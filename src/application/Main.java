@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
+
 public class Main extends Application {
-	// Override the start function of the application.
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -29,9 +29,7 @@ public class Main extends Application {
 		} catch(Exception e) { e.printStackTrace(); }
 	}
 	
-	// Main function of the program.
 	public static void main(String[] args) {
-		// Launching the application.
 		launch(args);
 	}
 }
