@@ -65,6 +65,7 @@ public class LinkedList {
 				break;
 			}
 			_current = _current.next;
+			_iteration++;
 		}
 		return _storedData;
 	}

@@ -209,6 +209,18 @@ public class AutoLoanController {
         Random random = new Random();
         return random.nextDouble(min, max);
     }
+    
+    private void loadStoredRates() {
+    	this.vehicleType.setValue(this.vehicleLoanController.getVehicleType());
+    	this.newVehicleAge.setSelected(this.vehicleLoanController.getVehicleAge()=="New");
+		this.oldVehicleAge.setSelected(this.vehicleLoanController.getVehicleAge()=="Old");
+		this.vehicleDownpayment.setText(this.currenyFormat(this.vehicleLoanController.getDownPayment()));
+		this.vehiclePrice.setText(this.currenyFormat(this.vehicleLoanController.getVehiclePrice()));
+		this.loanPaymentFrequency.setValue(this.vehicleLoanController.getLoanPaymentFrequency());
+		this.loanDuration.setValue(this.vehicleLoanController.getLoanDuration());
+		this.loanDurationFormFieldVisibility(true);
+		this.displayLoanDetails();
+    }
 	
 	@FXML
 	public void addSampleData() {
@@ -288,7 +300,7 @@ public class AutoLoanController {
 	         int _selectedIndex = _storedRatesList.getSelectionModel().getSelectedIndex();
 	         if(_selectedIndex > -1) {
 	        	 this.vehicleLoanController.loadRateAt(_selectedIndex);
-	        	 this.displayLoanDetails();
+	        	 this.loadStoredRates();
 	         }
 	     });
 

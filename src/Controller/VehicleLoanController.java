@@ -89,6 +89,9 @@ public class VehicleLoanController {
 	
 	public double 	 getPaymentAmount()        { return this.finance.getPaymentAmount(); }
 	
+	public double 	 getDownPayment()		   { return this.finance.getVehiclePrice()
+														- this.finance.getLoanAmount(); }
+	
 	public String 	 getLoanPaymentFrequency() { return this.finance.getLoanPaymentFrequency(); }
 	
 	public int    	 totalStoredFinances() 	   { return VehicleLoanController.storedFinanceList.count(); }
@@ -96,6 +99,8 @@ public class VehicleLoanController {
 	public String 	 getVehicleType()		   { return this.finance.getVehicleType(); }
 	
 	public String    getVehicleAge() 		   { return this.finance.getVehicleAge(); }
+	
+	public double	 getVehiclePrice()		   { return this.finance.getVehiclePrice(); }
 
 	// Store the current finance object into the linked list.
 	public void      save() 				   { VehicleLoanController.storedFinanceList.insert(this.finance); }
@@ -118,6 +123,8 @@ public class VehicleLoanController {
 	// Loan the value of the finance object stored at the passed index.
 	public void loadRateAt(int _index) {
 		this.finance = VehicleLoanController.storedFinanceList.getDataAt(_index);
+		if(this.finance == null)System.out.println("Finance is null");
+		else System.out.println("Finance is not null");
 	}
 	
 }

@@ -2,16 +2,16 @@ package Model;
 
 public class Finance {
 
-	private Vehicle item; 		     // Item for the loan. In our case the item is Vehicle type.
+	private Vehicle vehicle; 		     // vehicle for the loan. In our case the vehicle is Vehicle type.
 	private double  loanAmount,
 				    interestRate,
 				    paymentAmount;   // Amount to be paid by the customer at the stored interval(i.e. frequency)
 	private int		durationInMonths;
 	private String  frequency;       // Frequency of the loan: Monthly, Weekly, Bi-weekly.
 	
-	public Finance(Vehicle _item, double _loanAmount, double _interestRate, double _paymentAmount, int _durationInMonths, String _frequency) {
+	public Finance(Vehicle _vehicle, double _loanAmount, double _interestRate, double _paymentAmount, int _durationInMonths, String _frequency) {
 		
-		this.item = _item;
+		this.vehicle = _vehicle;
 		this.loanAmount = _loanAmount;
 		this.interestRate = _interestRate;
 		this.paymentAmount = _paymentAmount; 
@@ -36,8 +36,10 @@ public class Finance {
 	
 	public String getLoanPaymentFrequency() 		 	  { return this.frequency; }
 	
-	public String getVehicleAge() 						  { return this.item.getAge(); }
+	public String getVehicleAge() 						  { return this.vehicle.getAge(); }
 	
-	public String getVehicleType() 					  	  { return this.item.getType(); }
+	public String getVehicleType() 					  	  { return this.vehicle.getType(); }
+	
+	public double getVehiclePrice()						  { return this.vehicle.getPrice(); }
 	
 }
