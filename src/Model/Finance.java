@@ -2,12 +2,12 @@ package Model;
 
 public class Finance {
 
-	private Vehicle vehicle; 		     // vehicle for the loan. In our case the vehicle is Vehicle type.
+	private Vehicle vehicle;
 	private double  loanAmount,
 				    interestRate,
-				    paymentAmount;   // Amount to be paid by the customer at the stored interval(i.e. frequency)
+				    paymentAmount;    // Amount to be paid by the customer at the stored interval(i.e. frequency)
 	private int		durationInMonths;
-	private String  frequency;       // Frequency of the loan: Monthly, Weekly, Bi-weekly.
+	private String  frequency;        // Frequency of the loan: Monthly, Weekly, Bi-weekly.
 	
 	public Finance(Vehicle _vehicle, double _loanAmount, double _interestRate, double _paymentAmount, int _durationInMonths, String _frequency) {
 		
