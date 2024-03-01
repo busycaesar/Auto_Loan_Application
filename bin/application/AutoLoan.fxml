@@ -91,19 +91,6 @@
                <font>
                   <Font size="16.0" />
                </font></Text>
-         
-         <!-- 
-             <Text layoutX="325.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text layoutX="325.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-          -->
      
          </children>
       </Pane>
