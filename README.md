@@ -10,7 +10,11 @@ Java, JavaFX, SceneBuilder
 
 ## How it looks
 
+Application Interface:
+
 ![Application Interface](https://github.com/busycaesar/Auto_Loan_Application/assets/97539345/02e51118-e02c-4714-8508-dedb49f99b67)
+
+List of stored rates:
 
 ![Stored rates list](https://github.com/busycaesar/Auto_Loan_Application/assets/97539345/4978e03b-efe3-4a42-8a10-08b050f037ef)
 
