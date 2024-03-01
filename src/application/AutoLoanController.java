@@ -2,11 +2,16 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.text.*;
 import javafx.event.*;
 import javafx.beans.value.*;
+
+import java.util.Optional;
 import java.util.Random;
 import Controller.VehicleLoanController;
+import javafx.scene.layout.*;
+import javafx.collections.*;
 
 public class AutoLoanController {
 
@@ -76,7 +81,6 @@ public class AutoLoanController {
 		this.oldVehicleAge.setSelected(false);
 		this.vehiclePrice.setText("");
 		this.vehicleDownpayment.setText("");
-		this.loanDuration.setValue(12);
 		this.displayLoan.setText("");
 		this.displayWarning.setText("");
 		this.loanDurationFormFieldVisibility(false);
@@ -209,7 +213,6 @@ public class AutoLoanController {
 	@FXML
 	public void addSampleData() {
 		
-		//1-3
 		double _vehicleDownPayment = this.randomNum(100, 5000),
 		_vehiclePrice = this.randomNum(_vehicleDownPayment + 500, 50000);
 
@@ -239,12 +242,59 @@ public class AutoLoanController {
 	
 	}
 	
+	private String[] parseStoredRateList(double[][] _storedRates) {
+		
+		int 	 _totalStoredRates  = _storedRates.length;
+		String[] _storedRatesString = new String[_totalStoredRates];
+		
+		for(int index = 0; index < _totalStoredRates; index++) {
+			_storedRatesString[index] = "$" + this.currenyFormat(_storedRates[index][0]) + " at "
+										+ this.currenyFormat(_storedRates[index][1])
+										+ "% rate of interest for " 
+										+ Integer.toString((int)_storedRates[index][2]) + " months.";
+		}
+		
+		return _storedRatesString;
+	}
+	
 	@FXML
 	// Display the loan details stored into the list.
 	public void showSavedRates() { 
 		
-		// Display the list of rates.
-	
+		String[] 		   _storedRatesString = parseStoredRateList(this.vehicleLoanController.getStoredRates());
+		ListView<String>   _storedRatesList   = new ListView<String>();
+		Dialog<ButtonType> dialog 			  = new Dialog<>();
+		ButtonType 		   showButton 		  = new ButtonType("Show");
+		VBox 			   vbox 			  = new VBox(_storedRatesString.length);
+
+		// Add items into the ListView.
+		_storedRatesList.setItems(FXCollections.observableArrayList(_storedRatesString));
+		_storedRatesList.setPrefSize(500, 350);
+		
+		// Add ListView into vbox.
+		vbox.getChildren().addAll(_storedRatesList);
+		
+		// Configure dialog box.
+		dialog.setTitle("Saved Loan Rates");
+		dialog.setHeaderText("Click on rate to load it.");
+		
+		// Add items into dialog box.
+		dialog.getDialogPane().getButtonTypes().add(showButton);
+		dialog.getDialogPane().setContent(vbox);
+		
+		// Add event listener to the button.
+		Button okButton = (Button) dialog.getDialogPane().lookupButton(showButton);
+		okButton.addEventHandler(ActionEvent.ACTION, event -> {
+	         int _selectedIndex = _storedRatesList.getSelectionModel().getSelectedIndex();
+	         if(_selectedIndex > -1) {
+	        	 this.vehicleLoanController.loadRateAt(_selectedIndex);
+	        	 this.displayLoanDetails();
+	         }
+	     });
+
+		// Show the dialog box.
+	    dialog.showAndWait();
+		
 	}
 	
 }

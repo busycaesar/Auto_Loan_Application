@@ -107,17 +107,16 @@ public class VehicleLoanController {
 		double [][] _storedRatesArray   = new double[_totalStoredFinance][4];
 		
 		for(int index = 0; index < _totalStoredFinance; index++) {
-			_storedRatesArray[index][0] = index;
-			_storedRatesArray[index][1] = _storedRates[index].getLoanAmount();
-			_storedRatesArray[index][2] = _storedRates[index].getInterestRate();
-			_storedRatesArray[index][3] = _storedRates[index].getLoanDuration();
+			_storedRatesArray[index][0] = _storedRates[index].getLoanAmount();
+			_storedRatesArray[index][1] = _storedRates[index].getInterestRate();
+			_storedRatesArray[index][2] = _storedRates[index].getLoanDuration();
 		}
 		
 		return _storedRatesArray;
 	}
 	
 	// Loan the value of the finance object stored at the passed index.
-	public void loanRate(int _index) {
+	public void loadRateAt(int _index) {
 		this.finance = VehicleLoanController.storedFinanceList.getDataAt(_index);
 	}
 	
