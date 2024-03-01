@@ -87,17 +87,38 @@ public class VehicleLoanController {
 		
 	}
 	
-	public double getPaymentAmount()        			 { return this.finance.getPaymentAmount(); }
+	public double 	 getPaymentAmount()        { return this.finance.getPaymentAmount(); }
 	
-	public String getLoanPaymentFrequency() 			 { return this.finance.getLoanPaymentFrequency(); }
+	public String 	 getLoanPaymentFrequency() { return this.finance.getLoanPaymentFrequency(); }
 	
-	public int    totalStoredFinances() 				 { return VehicleLoanController.storedFinanceList.count(); }
+	public int    	 totalStoredFinances() 	   { return VehicleLoanController.storedFinanceList.count(); }
 	
-	public String getVehicleType()						 { return this.finance.getVehicleType(); }
+	public String 	 getVehicleType()		   { return this.finance.getVehicleType(); }
 	
-	public String getVehicleAge() 						 { return this.finance.getVehicleAge(); }
+	public String    getVehicleAge() 		   { return this.finance.getVehicleAge(); }
 
-	// Storing the current finance object into the linked list.
-	public void   save() 								 { VehicleLoanController.storedFinanceList.insert(finance); }
+	// Store the current finance object into the linked list.
+	public void      save() 				   { VehicleLoanController.storedFinanceList.insert(this.finance); }
 
+	public double[][] getStoredRates() { 
+	
+		Finance[] 	_storedRates 		= VehicleLoanController.storedFinanceList.getAllData(); 
+		int 		_totalStoredFinance = _storedRates.length;
+		double [][] _storedRatesArray   = new double[_totalStoredFinance][4];
+		
+		for(int index = 0; index < _totalStoredFinance; index++) {
+			_storedRatesArray[index][0] = index;
+			_storedRatesArray[index][1] = _storedRates[index].getLoanAmount();
+			_storedRatesArray[index][2] = _storedRates[index].getInterestRate();
+			_storedRatesArray[index][3] = _storedRates[index].getLoanDuration();
+		}
+		
+		return _storedRatesArray;
+	}
+	
+	// Loan the value of the finance object stored at the passed index.
+	public void loanRate(int _index) {
+		this.finance = VehicleLoanController.storedFinanceList.getDataAt(_index);
+	}
+	
 }
