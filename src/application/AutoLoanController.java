@@ -2,12 +2,10 @@ package application;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.text.*;
 import javafx.event.*;
 import javafx.beans.value.*;
 
-import java.util.Optional;
 import java.util.Random;
 import Controller.VehicleLoanController;
 import javafx.scene.layout.*;
@@ -61,7 +59,7 @@ public class AutoLoanController {
 		
 	}
 
-	// Fill all the choices into the choice box.
+	// Fill the options at all the places required.
 	private void fillChoiceBoxes() {
 		
 		this.vehicleType.getItems().addAll("Car", "Truck", "Family Van");
@@ -88,6 +86,7 @@ public class AutoLoanController {
 	}
 	
 	// Event handlers for buttons.
+	
 	private EventHandler<ActionEvent> clearButtonClickHandler = new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent event) { setDefaults(); }
@@ -130,6 +129,7 @@ public class AutoLoanController {
 			return;
 		}
 		
+		// Get the data from form fields.
 		String _vehicleType  		 = this.vehicleType.getValue(),
 			   _vehicleAge   		 = ((RadioButton)this.vehicleAge.getSelectedToggle()).getText(),
 			   _loanPaymentFrequency = this.loanPaymentFrequency.getValue();
@@ -140,6 +140,7 @@ public class AutoLoanController {
 				   _vehicleDownPayment = Double.parseDouble(this.vehicleDownpayment.getText());
 			int    _loanDuration	   = (int)this.loanDuration.getValue();
 			
+			// Make sure proper data is enter in the fields.
 			if(_vehiclePrice <= _vehicleDownPayment) {
 				System.out.println("Print message");
 				this.displayWarning.setText("Vehicle's price cannot be less than or equal to the down payment!");
@@ -174,6 +175,7 @@ public class AutoLoanController {
 	// Display all the loan details as required by the user.
 	private void displayLoanDetails() {
 		
+		// Get details from the controller.
 		String _vehicleType		 = this.vehicleLoanController.getVehicleType(),
 			   _vehicleAge		 = this.vehicleLoanController.getVehicleAge(),
 			   _loanAmount       = this.currenyFormat(this.vehicleLoanController.getLoanAmount()),
@@ -182,12 +184,14 @@ public class AutoLoanController {
 			   _paymentAmount 	 = this.currenyFormat(this.vehicleLoanController.getPaymentAmount()),
 			   _frequency 		 = this.vehicleLoanController.getLoanPaymentFrequency();
 
+		// Making sure all the details are available.
 		if(_loanAmount 		 != ""
 		&& _interestRate 	 != ""
 		&& _durationInMonths != ""
 		&& _paymentAmount 	 != ""
 		&& _frequency 		 != "") {
 			
+			// Create the message with data to display.
 			String _message = "For your " + _vehicleAge.toLowerCase() + " "
 							  + _vehicleType.toLowerCase() + ", you can borrow $"
 							  + _loanAmount + " at " + _interestRate
@@ -201,16 +205,19 @@ public class AutoLoanController {
 		
 	}
 	
+	// Generate a random number between the passed range.
     private double randomNum(double min, double max) {
-        if (min >= max) {
-            throw new IllegalArgumentException("Max must be greater than min");
-        }
+    	
+        if (min >= max) { throw new IllegalArgumentException("Max must be greater than min"); }
 
         Random random = new Random();
         return random.nextDouble(min, max);
+        
     }
     
+    // Loan the stored details into the form and show the details.
     private void loadStoredRates() {
+    	
     	this.vehicleType.setValue(this.vehicleLoanController.getVehicleType());
     	this.newVehicleAge.setSelected(this.vehicleLoanController.getVehicleAge()=="New");
 		this.oldVehicleAge.setSelected(this.vehicleLoanController.getVehicleAge()=="Old");
@@ -219,10 +226,13 @@ public class AutoLoanController {
 		this.loanPaymentFrequency.setValue(this.vehicleLoanController.getLoanPaymentFrequency());
 		this.loanDuration.setValue(this.vehicleLoanController.getLoanDuration());
 		this.loanDurationFormFieldVisibility(true);
+		
 		this.displayLoanDetails();
+		
     }
 	
 	@FXML
+	// Add sample data into the from for testing.
 	public void addSampleData() {
 		
 		double _vehicleDownPayment = this.randomNum(100, 5000),
@@ -241,19 +251,22 @@ public class AutoLoanController {
 		
 		this.vehiclePrice.setText(this.currenyFormat(_vehiclePrice));
 		this.vehicleDownpayment.setText(this.currenyFormat(_vehicleDownPayment));
+		
 	}
 	
 	@FXML
-	// Store the displayed loan details into a list.
+	// Store the displayed loan details into the list.
 	public void storeRate() { 
 		
 		System.out.println("Storing Details");
+		
 		this.vehicleLoanController.save();
 		this.setDefaults();
 		this.displayLoan.setText("Rates stored successfully!");
 	
 	}
 	
+	// Parse 2D array of stored rates into an array of string.
 	private String[] parseStoredRateList(double[][] _storedRates) {
 		
 		int 	 _totalStoredRates  = _storedRates.length;
@@ -267,6 +280,7 @@ public class AutoLoanController {
 		}
 		
 		return _storedRatesString;
+		
 	}
 	
 	@FXML
@@ -294,7 +308,7 @@ public class AutoLoanController {
 		dialog.getDialogPane().getButtonTypes().add(showButton);
 		dialog.getDialogPane().setContent(vbox);
 		
-		// Add event listener to the button.
+		// Add event listener to the button to loan the rate requested by customer.
 		Button okButton = (Button) dialog.getDialogPane().lookupButton(showButton);
 		okButton.addEventHandler(ActionEvent.ACTION, event -> {
 	         int _selectedIndex = _storedRatesList.getSelectionModel().getSelectedIndex();
