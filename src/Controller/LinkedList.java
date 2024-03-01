@@ -16,14 +16,14 @@ class Node {
     
 }
 
-// List to link the nodes.
+// List to link the nodes storing finance object.
 public class LinkedList {
 	
 	Node head;
 	
 	LinkedList(){ this.head = null; }
 	
-	// Inserting a new data into the node and linking the node at the end of the linked list.
+	// Insert a new node at the end of the link.
 	public void insert(Finance _loanDetails) {
 		
 	    Node newNode = new Node(_loanDetails);
@@ -37,6 +37,7 @@ public class LinkedList {
 
 	}
 	
+	// Return an array of the finance object from node.
 	public Finance[] getAllData() {
 		
 		int 	  totalData  = this.count(),
@@ -50,9 +51,10 @@ public class LinkedList {
 		}
 		
 		return storedData;
+
 	}
 	
-	// Return the data at the passed index.
+	// Return the finance object at the passed index.
 	public Finance getDataAt(int _index) {
 		
 		Finance _storedData = null;
@@ -60,24 +62,33 @@ public class LinkedList {
 		int 	_iteration  = 0;
 		
 		while(_current != null) {
+	
 			if(_iteration == _index) {				
 				_storedData = _current.loanDetails;
 				break;
 			}
 			_current = _current.next;
 			_iteration++;
+	
 		}
+	
 		return _storedData;
+		
 	}
 	
-	// Counting the total nodes stored in the list.
+	// Count the total nodes in the list.
 	public int count() {
+		
 		Node current   = head;
 		int totalNodes = 0;
+	
 		while(current != null) { 
 			totalNodes++; 
 			current = current.next;
 		}
+		
 		return totalNodes;
+	
 	}
+	
 }

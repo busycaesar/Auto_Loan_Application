@@ -20,6 +20,7 @@ public class Finance {
 		
 	}
 	
+	// Getters and setters.
 	public double getLoanAmount() 						  { return this.loanAmount;	}
 	
 	public double getInterestRate() 					  { return this.interestRate; }
