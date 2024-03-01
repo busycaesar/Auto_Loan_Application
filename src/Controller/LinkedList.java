@@ -34,6 +34,39 @@ public class LinkedList {
 	        while (current.next != null) { current = current.next; }
 	        current.next = newNode;
 	        }
+
+	}
+	
+	public Finance[] getAllData() {
+		
+		int 	  totalData  = this.count(),
+				  index 	 = 0;
+		Node 	  current    = head;
+		Finance[] storedData = new Finance[totalData];
+		
+		while(current != null && index < totalData) {
+			storedData[index++] = current.loanDetails;
+			current 			= current.next;
+		}
+		
+		return storedData;
+	}
+	
+	// Return the data at the passed index.
+	public Finance getDataAt(int _index) {
+		
+		Finance _storedData = null;
+		Node 	_current    = head;
+		int 	_iteration  = 0;
+		
+		while(_current != null) {
+			if(_iteration == _index) {				
+				_storedData = _current.loanDetails;
+				break;
+			}
+			_current = _current.next;
+		}
+		return _storedData;
 	}
 	
 	// Counting the total nodes stored in the list.
