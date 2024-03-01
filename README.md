@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an application which calculates the amount the be paid by the customer in a specific regular interval to repay the money borrowed for purchasing the vechicle.
+This application calculates the amount the be paid by the customer at a specific regular interval to repay the money borrowed for purchasing the vechicle.
 
 ## Tech Stack
 
@@ -10,11 +10,16 @@ Java, JavaFX, SceneBuilder
 
 ## How it looks
 
-![Application Interface](https://github.com/busycaesar/Auto_Loan_Application/assets/97539345/5b987c83-4b21-4b7c-a109-b6aa8733a4fa)
+![Application Interface](https://github.com/busycaesar/Auto_Loan_Application/assets/97539345/02e51118-e02c-4714-8508-dedb49f99b67)
+
+![Stored rates list](https://github.com/busycaesar/Auto_Loan_Application/assets/97539345/4978e03b-efe3-4a42-8a10-08b050f037ef)
 
 ## Features
 
-* Calculates the payments according to the downpayment, price, interest rate and required payment intervals.
+* Calculates the rate of interest and payments as per the price of the car, downpayment, and required payment intervals (weekly, bi-weekly and monthly).
+* Change the loan payment duration and see the affected repayment price in real time using a slider. 
+* Store the calculated rates.
+* View the list of stored calculated rates and reloan them into the form.
 
 ## How to run the project
 
