@@ -36,8 +36,6 @@ public class AutoLoanController {
 				    			  showSavedRatesButton;
 	@FXML
 	private Label				  loanDurationLabel;
-	
-	// Controller
 	private VehicleLoanController vehicleLoanController;
 	
 	public void initialize() {
