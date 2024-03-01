@@ -16,10 +16,11 @@ Java, JavaFX, SceneBuilder
 
 ## Features
 
-* Calculates the rate of interest and payments as per the price of the car, downpayment, and required payment intervals (weekly, bi-weekly and monthly).
+* Calculate the rate of interest and payments as per the price of the car, downpayment, and required payment intervals (weekly, bi-weekly and monthly).
 * Change the loan payment duration and see the affected repayment price in real time using a slider. 
 * Store the calculated rates.
 * View the list of stored calculated rates and reloan them into the form.
+* Loan sample data for testing.
 
 ## How to run the project
 
